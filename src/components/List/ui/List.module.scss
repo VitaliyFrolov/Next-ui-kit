@@ -1,0 +1,11 @@
+.type-shop {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.type-residents {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

@@ -1,0 +1,36 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 17%);
+    z-index: 999;
+    animation-name: open-menu;
+    animation-duration: 0.5s;
+}
+
+.overlay_close {
+    animation-name: close-menu;
+    animation-duration: 0.1s;
+}
+
+@keyframes open-menu {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes close-menu {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
