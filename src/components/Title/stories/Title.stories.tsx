@@ -4,7 +4,18 @@ import { TitleProps } from "../ui/Title";
 
 const meta: Meta<TitleProps> = {
     title: "UI/Title",
-    component: Title
+    component: Title,
+    argTypes: {
+        children: {
+            type: "string",
+        },
+        tag: {
+            type: "string"
+        },
+        size: {
+            type: "string"
+        }
+    }
 };
 
 export default meta;

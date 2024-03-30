@@ -3,30 +3,32 @@ import { createPortal } from 'react-dom';
 import styles from './Modal.module.scss';
 
 export interface ModalProps {
+    root: string,
     children: React.ReactElement;
     active: boolean;
-    outsideClick?: () => void;
+    onClise?: () => void;
     backgroundColor?: string;
 }
 
 export const Modal: FC<ModalProps> = (props) => {
     const {
+        root,
         children,
         active,
-        outsideClick,
+        onClise,
     } = props;
 
     const ref = useRef<Element | null>(null);
 
     useEffect(() => {
-        ref.current = document.querySelector<HTMLElement>('#body')
+        ref.current = document.querySelector<HTMLElement>(root)
     }, [])
 
     const layout = (
         <div className={styles.modal}>
             <div
                 className={styles.overlay}
-                onClick={outsideClick}
+                onClick={onClise}
             >
                 <div className={styles.window} onClick={(e) => e.stopPropagation()}>
                     {children}

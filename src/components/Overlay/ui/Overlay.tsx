@@ -4,25 +4,27 @@ import { useKeyPress } from '../../../hooks/useKeyPress';
 import { scrollBlocker } from '../helpers/scrollBlocker';
 import styles from './Overlay.module.scss';
 
-interface OverlayProps {
+export interface OverlayProps {
+    root: string,
     active: boolean,
-    esc: () => void,
+    close: () => void,
 }
 
 export const Overlay: FC<OverlayProps> = ({
+    root,
     active,
-    esc,
+    close,
 }) => {
     const ref = useRef<Element | null>(null);
     const background = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        ref.current = document.querySelector<HTMLElement>('#body')
+        ref.current = document.querySelector<HTMLElement>(root)
     }, [])
 
-    const overlay: ReactElement | null = <div ref={background} className={styles.overlay} onClick={() => esc()}> </div>;
+    const overlay: ReactElement | null = <div ref={background} className={styles.overlay} onClick={() => close()}> </div>;
     scrollBlocker(active);
-    useKeyPress("Escape", esc);
+    useKeyPress("Escape", close);
 
     return (active && ref.current) ? createPortal(overlay, ref.current): null
 }
