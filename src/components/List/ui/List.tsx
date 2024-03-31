@@ -20,11 +20,11 @@ export const List = <D, >(props: ListProps<D>) => {
         isLoading ? <div>Loading..</div> : 
         
         <ul className={cn([styles.list, className])}>
-            {data.map((item, index) => (
+            {data.length > 0 ? data.map((item, index) => (
                 <li key={index} className={styles.list__item}>
                     {template(item)}
                 </li>
-            ))}
+            )) : <div>Loading..</div>}
         </ul>
     )
 };

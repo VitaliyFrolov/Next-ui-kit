@@ -8,12 +8,15 @@ const meta: Meta<TitleProps> = {
     argTypes: {
         children: {
             type: "string",
+            description: "Content"
         },
         tag: {
-            type: "string"
+            type: "string",
+            description: "Html tag"
         },
         size: {
-            type: "string"
+            type: "string",
+            description: "Font size"
         }
     }
 };
@@ -21,7 +24,7 @@ const meta: Meta<TitleProps> = {
 export default meta;
 type Story = StoryObj<TitleProps>;
 
-export const Primary: Story = {
+export const Default: Story = {
     args: {
         children: "Title",
         tag: "h2",

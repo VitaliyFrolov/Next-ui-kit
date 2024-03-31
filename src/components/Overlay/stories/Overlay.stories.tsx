@@ -9,16 +9,20 @@ const meta: Meta<OverlayProps> = {
     argTypes: {
         root: {
             type: "string",
-            description: "root element"
+            description: "Root element"
         },
         active: {
             type: "boolean",
-            description: "activity states overlay",
+            description: "Activity states overlay",
             defaultValue: false,
+        },
+        shading: {
+            type: "number",
+            description: "shading"
         },
         close: {
             type: "function",
-            description: "function to close overlay. Handles outside clicks and pressing the esc key"
+            description: "Function to close overlay. Handles outside clicks and pressing the esc key"
         }
     },
 };
@@ -26,7 +30,7 @@ const meta: Meta<OverlayProps> = {
 export default meta;
 type Story = StoryObj<OverlayProps>;
 
-export const Primary: Story = {
+export const Default: Story = {
     args: {
         root: "#storybook-root",
         active: false,
@@ -34,4 +38,4 @@ export const Primary: Story = {
     }
 }
 
-Primary.storyName = "Modal"
+Default.storyName = "Modal"

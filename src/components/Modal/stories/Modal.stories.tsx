@@ -4,7 +4,7 @@ import { ModalProps } from "../ui/Modal";
 import { fn } from "@storybook/test";
 import { FC } from "react";
 
-const ModalView:FC = () => {
+const ModalView: FC = () => {
     return (
         <div style={{
             border: "1px solid black",
@@ -56,7 +56,7 @@ const meta: Meta<ModalProps> = {
 export default meta;
 type Story = StoryObj<ModalProps>;
 
-export const Primary: Story = {
+export const Default: Story = {
     args: {
         root: "#storybook-root",
         active: false,

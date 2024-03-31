@@ -20,9 +20,9 @@ const meta: Meta<RadioCheckboxProps> = {
 export default meta;
 type Story = StoryObj<RadioCheckboxProps>;
 
-export const Primary: Story = {
+export const Default: Story = {
     args: {
-        label: "Click me!",
+        label: "",
         onClick: action('clicked')
     }
 }
