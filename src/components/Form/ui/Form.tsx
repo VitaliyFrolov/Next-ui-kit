@@ -8,20 +8,38 @@ import { isAllInputValid } from '../helpers/isAllInputValid';
 import { phoneValidation } from '@/components/Input/helpers/phoneValidation';
 import { emailValidation } from '@/components/Input/helpers/emailValidation';
 import { nameValidation } from '@/components/Input/helpers/nameValidation';
-import { searchValue } from '../helpers/searchValue';
 import styles from './Form.module.scss';
 
-export const Form: FC = () => {
-    const [ data, setData ] = useState<any>([]);
+interface FormProps {
+    title: string;
+    alert: InputAlert;
+    type: string;
+}
+
+export const Form: FC<FormProps> = () => {
+    const [ data, setData ] = useState<any>([
+        {
+            value: '',
+            alert: 'none',
+            type: 'text'
+        },
+        {
+            value: '',
+            alert: 'none',
+            type: 'phone'
+        },
+        {
+            value: '',
+            alert: 'none',
+            type: 'email'
+        }
+    ]);
 
     const submit = (e: any) => {
         e.preventDefault();
-        if (isAllInputValid(data, 3)) {
-            console.log({
-                name: searchValue(data, 'text'),
-                phone: searchValue(data, 'phone'),
-                email: searchValue(data, 'email')
-            });
+
+        if (isAllInputValid(data)) {
+            console.log(data);
         }
     };
 
@@ -30,17 +48,19 @@ export const Form: FC = () => {
         alert: InputAlert, 
         type: string
     ) => {
-
-        setData((prevData: any[]) => {
-            const existingEntryIndex = prevData.findIndex(item => item.type === type);
-            if (existingEntryIndex >= 0) {
-                const newData = [...prevData];
-                newData[existingEntryIndex] = { ...newData[existingEntryIndex], value, alert };
-                return newData;
-            } else {
-                return [...prevData, { type, value, alert }];
+        const updateData = data.map((item: any) => {
+            if (item.type === type) {
+                return {
+                    ...item,
+                    value: value,
+                    alert: alert
+                }
             }
+
+            return item;
         });
+
+        setData(updateData);
     };
 
     return (
@@ -51,7 +71,7 @@ export const Form: FC = () => {
             <form className={styles.form} onSubmit={submit}>
                 <Input
                     handler={handlerValue}
-                    // validation={nameValidation}
+                    validation={nameValidation}
                     type='text'
                     placeholder='text'
                     maxLength={20}

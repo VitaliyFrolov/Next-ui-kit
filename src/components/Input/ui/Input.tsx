@@ -2,6 +2,8 @@ import { FC, useRef, useState } from 'react';
 import { InputProps } from '../type/IInputProps';
 import { cn } from '@/libs/classNames';
 import styles from './Input.module.scss';
+
+//TODO: Добавить обработку нажатия на return key
 export const Input: FC<InputProps> = ({
     handler,
     validation,
@@ -10,7 +12,6 @@ export const Input: FC<InputProps> = ({
     type,
     maxLength,
     mask
-    
 }) => {
     const [ value, setValue ] = useState<string>('');
     const [ alert, setAlert ] = useState<any>('empty');
@@ -20,7 +21,7 @@ export const Input: FC<InputProps> = ({
     const updateAlertState = (value: string) => {  
         if (validation) {
             let valid = validation(value);
-            
+
             setAlert(valid.alert);
         } else {
            setAlert('none')
@@ -30,7 +31,6 @@ export const Input: FC<InputProps> = ({
     const handleValue = (e: any) => {
         e.stopPropagation();
         let value = e.target.value;
-
         updateAlertState(value);
 
         if (mask) {
@@ -46,7 +46,6 @@ export const Input: FC<InputProps> = ({
     const onBlurInput = (e: any) => {
         e.stopPropagation();
         handler(e.target.value, alert, type);
-
         updateAlertState(e.target.value);
         setOutline(alert);
     };

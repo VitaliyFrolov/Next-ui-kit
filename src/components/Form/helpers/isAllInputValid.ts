@@ -1,5 +1,3 @@
-export const isAllInputValid = (values: any[], quantityInputs: number) => {
-    if (values.length === quantityInputs) {
-        return values.every(value => value.alert === 'success');
-    } else return false
+export const isAllInputValid = (values: any[]) => {
+    return values.every(value => value.alert === 'success');
 };
