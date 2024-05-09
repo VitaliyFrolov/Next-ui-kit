@@ -1,0 +1,23 @@
+.outline {
+    &_error {
+        outline: 1px solid red;
+    }
+
+    &_success {
+        outline: 1px solid green;
+    }
+
+    &_empty {
+        outline: 1px solid red;
+    }
+
+    &_warning {
+        outline: 1px solid red;
+    }
+
+    &_none {
+        outline: none;
+    }
+
+   
+}
