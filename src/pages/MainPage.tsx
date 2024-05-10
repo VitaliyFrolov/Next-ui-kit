@@ -1,11 +1,11 @@
-import { Form } from '@/components/Form';
+import { Form, formData } from '@/components/Form';
 import styles from './MainPage.module.scss';
 
 export default function MainPage() {
     return (
         <div>
             <Form
-                className={styles.form}
+                model={formData}
             />
         </div>
     )

@@ -1,12 +1,12 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { InputProps } from '../type/IInputProps';
 import { cn } from '@/libs/classNames';
 import styles from './Input.module.scss';
 
-//TODO: Добавить обработку нажатия на return key
 export const Input: FC<InputProps> = ({
     handler,
     validation,
+    error = false,
     className,
     placeholder,
     type,
@@ -20,11 +20,11 @@ export const Input: FC<InputProps> = ({
 
     const updateAlertState = (value: string) => {  
         if (validation) {
-            let valid = validation(value);
+            let validValue = validation(value);
 
-            setAlert(valid.alert);
+            setAlert(validValue.alert);
         } else {
-           setAlert('none')
+           setAlert('')
         };
     };
 
@@ -49,6 +49,13 @@ export const Input: FC<InputProps> = ({
         updateAlertState(e.target.value);
         setOutline(alert);
     };
+
+    useEffect(() => {
+        if (error === true) {
+            setAlert('error');
+            setOutline('error');
+        }
+    }, [error]);
 
     return (
         <input

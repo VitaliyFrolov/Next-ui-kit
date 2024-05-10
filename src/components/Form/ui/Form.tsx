@@ -9,37 +9,29 @@ import { phoneValidation } from '@/components/Input/helpers/phoneValidation';
 import { emailValidation } from '@/components/Input/helpers/emailValidation';
 import { nameValidation } from '@/components/Input/helpers/nameValidation';
 import styles from './Form.module.scss';
+import { errorHandler } from '../helpers/errorHandler';
+import { getInputState } from '../helpers/getInputState';
 
 interface FormProps {
-    title: string;
-    alert: InputAlert;
-    type: string;
-}
+    model?: any;
+};
 
-export const Form: FC<FormProps> = () => {
-    const [ data, setData ] = useState<any>([
-        {
-            value: '',
-            alert: 'none',
-            type: 'text'
-        },
-        {
-            value: '',
-            alert: 'none',
-            type: 'phone'
-        },
-        {
-            value: '',
-            alert: 'none',
-            type: 'email'
-        }
-    ]);
+export const Form: FC<FormProps> = (props) => {
+    const {
+        model = [],
+    } = props;
+    const [ data, setData ] = useState<FormProps["model"]>(model);
+    const [ warrning, setWarrning ] = useState<boolean>(false);
 
     const submit = (e: any) => {
         e.preventDefault();
 
         if (isAllInputValid(data)) {
             console.log(data);
+            setWarrning(false);
+        } else {
+            setData(errorHandler(data))
+            setWarrning(true);
         }
     };
 
@@ -68,10 +60,12 @@ export const Form: FC<FormProps> = () => {
             <Title className={styles.form__title}>
                 Form
             </Title>
+            {warrning ? <span>не вспе поля заполнены</span> : null}
             <form className={styles.form} onSubmit={submit}>
                 <Input
                     handler={handlerValue}
                     validation={nameValidation}
+                    error={getInputState(data, 'text')}
                     type='text'
                     placeholder='text'
                     maxLength={20}
@@ -80,6 +74,7 @@ export const Form: FC<FormProps> = () => {
                 <Input
                     handler={handlerValue}
                     validation={phoneValidation}
+                    error={getInputState(data, 'phone')}
                     type='phone'
                     placeholder='phone'
                     mask={phoneMask}
@@ -89,6 +84,7 @@ export const Form: FC<FormProps> = () => {
                 <Input
                     handler={handlerValue}
                     validation={emailValidation}
+                    error={getInputState(data, 'email')}
                     type='email'
                     placeholder='email'
                     maxLength={20}
