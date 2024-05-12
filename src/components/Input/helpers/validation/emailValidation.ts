@@ -9,7 +9,6 @@ export function emailValidation(value: string): ValidationResult {
         state: 'none'
     };
 
-
     if (value.length === 0) {
         return {
             value: value,

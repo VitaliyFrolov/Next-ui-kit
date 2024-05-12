@@ -26,7 +26,6 @@ export const Form: FC<FormProps> = (props) => {
     const submit = (e: SyntheticEvent) => {
         e.preventDefault();
 
-
         if (isAllInputValid(data)) {
             console.log(data);
         } else {

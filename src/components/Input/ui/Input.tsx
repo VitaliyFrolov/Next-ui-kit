@@ -3,6 +3,7 @@ import { InputProps } from '../type/IInputProps';
 import { cn } from '@/libs/classNames';
 import styles from './Input.module.scss';
 import { InputState } from '../type/InputTypes';
+import { useKeyPress } from '@/hooks/useKeyPress';
 
 export const Input: FC<InputProps> = ({
     dataHandler,
@@ -21,18 +22,15 @@ export const Input: FC<InputProps> = ({
 
     const handleValue = (e: any) => {
         e.stopPropagation();
-        let value = e.target.value;
-        updateInputState(value);
-
+        let newValue = e.target.value;
+    
         if (mask) {
-            const maskedValue = mask(value, maxLength, inputRef);
-            setValue(maskedValue.value);
-        } else {
-            setValue(value);
+            const maskedValue = mask(newValue, maxLength, inputRef);
+            newValue = maskedValue.value;
         }
-
-        dataHandler(value, inputState, type);
-    };
+    
+        setValue(newValue);
+    };    
 
     const updateInputState = (value: string) => {  
         if (validation) {
@@ -49,6 +47,18 @@ export const Input: FC<InputProps> = ({
         updateInputState(e.target.value);
         setOutline(inputState);
     };
+
+    const onKeyDown = () => {
+        setOutline(inputState);
+    };
+    
+    useKeyPress('Enter', onKeyDown)
+
+    useEffect(() => {
+        const validValue: any = validation ? validation(value) : { state: 'none' };
+        setInputState(validValue.state);
+        dataHandler(value, validValue.state, type);
+    }, [value]);
 
     useEffect(() => {
         if (errorState === true) {
