@@ -1,17 +1,17 @@
 export const formData = [
     {
         value: '',
-        alert: 'none',
+        state: 'none',
         type: 'text'
     },
     {
         value: '',
-        alert: 'none',
+        state: 'none',
         type: 'phone'
     },
     {
         value: '',
-        alert: 'none',
+        state: 'none',
         type: 'email'
     }
 ];

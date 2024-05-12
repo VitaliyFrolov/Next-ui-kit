@@ -2,11 +2,12 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { InputProps } from '../type/IInputProps';
 import { cn } from '@/libs/classNames';
 import styles from './Input.module.scss';
+import { InputState } from '../type/InputTypes';
 
 export const Input: FC<InputProps> = ({
-    handler,
+    dataHandler,
     validation,
-    error = false,
+    errorState = false,
     className,
     placeholder,
     type,
@@ -14,24 +15,14 @@ export const Input: FC<InputProps> = ({
     mask
 }) => {
     const [ value, setValue ] = useState<string>('');
-    const [ alert, setAlert ] = useState<any>('empty');
-    const [ outline, setOutline] = useState<any>('none');
-    const inputRef = useRef(null);
-
-    const updateAlertState = (value: string) => {  
-        if (validation) {
-            let validValue = validation(value);
-
-            setAlert(validValue.alert);
-        } else {
-           setAlert('')
-        };
-    };
+    const [ inputState, setInputState ] = useState<InputState>('empty');
+    const [ outline, setOutline] = useState<InputState>('none');
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const handleValue = (e: any) => {
         e.stopPropagation();
         let value = e.target.value;
-        updateAlertState(value);
+        updateInputState(value);
 
         if (mask) {
             const maskedValue = mask(value, maxLength, inputRef);
@@ -40,22 +31,31 @@ export const Input: FC<InputProps> = ({
             setValue(value);
         }
 
-        handler(value, alert, type);
+        dataHandler(value, inputState, type);
     };
 
-    const onBlurInput = (e: any) => {
+    const updateInputState = (value: string) => {  
+        if (validation) {
+            let validValue = validation(value);
+            setInputState(validValue.alert);
+        } else {
+           setInputState('none')
+        };
+    };
+
+    const onBlurInput = (e: React.FocusEvent<HTMLInputElement>) => {
         e.stopPropagation();
-        handler(e.target.value, alert, type);
-        updateAlertState(e.target.value);
-        setOutline(alert);
+        dataHandler(e.target.value, inputState, type);
+        updateInputState(e.target.value);
+        setOutline(inputState);
     };
 
     useEffect(() => {
-        if (error === true) {
-            setAlert('error');
+        if (errorState === true) {
+            setInputState('error');
             setOutline('error');
         }
-    }, [error]);
+    }, [errorState]);
 
     return (
         <input
@@ -65,8 +65,8 @@ export const Input: FC<InputProps> = ({
             name={type}
             maxLength={maxLength}
             onChange={(e) => handleValue(e)}
-            value={value}
             onBlur={(e) => onBlurInput(e)}
+            value={value}
             ref={inputRef}
         />
     )

@@ -1,51 +1,50 @@
 'use client'
-import { FC, useState } from 'react';
+import type { InputState, InputType } from '@/components/Input';
+import { FC, SyntheticEvent, useState } from 'react';
 import { Input } from '@/components/Input';
-import { InputAlert } from '@/components/Input/type/IInputProps';
 import { phoneMask } from '@/components/Input/lib/phoneMask';
 import { Title } from '@/components/Title';
 import { isAllInputValid } from '../helpers/isAllInputValid';
-import { phoneValidation } from '@/components/Input/helpers/phoneValidation';
-import { emailValidation } from '@/components/Input/helpers/emailValidation';
-import { nameValidation } from '@/components/Input/helpers/nameValidation';
-import styles from './Form.module.scss';
+import { phoneValidation } from '@/components/Input/helpers/validation/phoneValidation';
+import { emailValidation } from '@/components/Input/helpers/validation/emailValidation';
+import { nameValidation } from '@/components/Input/helpers/validation/nameValidation';
 import { errorHandler } from '../helpers/errorHandler';
 import { getInputState } from '../helpers/getInputState';
+import { FormModel } from '../type/FormTypes';
+import styles from './Form.module.scss';
 
 interface FormProps {
-    model?: any;
+    model?: FormModel[];
 };
 
 export const Form: FC<FormProps> = (props) => {
     const {
         model = [],
     } = props;
-    const [ data, setData ] = useState<FormProps["model"]>(model);
-    const [ warrning, setWarrning ] = useState<boolean>(false);
+    const [ data, setData ] = useState<FormModel[]>(model || []);
 
-    const submit = (e: any) => {
+    const submit = (e: SyntheticEvent) => {
         e.preventDefault();
+
 
         if (isAllInputValid(data)) {
             console.log(data);
-            setWarrning(false);
         } else {
             setData(errorHandler(data))
-            setWarrning(true);
         }
     };
 
     const handlerValue = (
         value: string,
-        alert: InputAlert, 
-        type: string
+        inputState: InputState, 
+        type: InputType | undefined,
     ) => {
-        const updateData = data.map((item: any) => {
+        const updateData = data.map((item: FormModel) => {
             if (item.type === type) {
                 return {
                     ...item,
                     value: value,
-                    alert: alert
+                    state: inputState
                 }
             }
 
@@ -60,21 +59,20 @@ export const Form: FC<FormProps> = (props) => {
             <Title className={styles.form__title}>
                 Form
             </Title>
-            {warrning ? <span>не вспе поля заполнены</span> : null}
             <form className={styles.form} onSubmit={submit}>
                 <Input
-                    handler={handlerValue}
+                    dataHandler={handlerValue}
                     validation={nameValidation}
-                    error={getInputState(data, 'text')}
+                    errorState={getInputState(data, 'text')}
                     type='text'
                     placeholder='text'
                     maxLength={20}
                     className={styles.form__input}
                 />
                 <Input
-                    handler={handlerValue}
+                    dataHandler={handlerValue}
                     validation={phoneValidation}
-                    error={getInputState(data, 'phone')}
+                    errorState={getInputState(data, 'phone')}
                     type='phone'
                     placeholder='phone'
                     mask={phoneMask}
@@ -82,9 +80,9 @@ export const Form: FC<FormProps> = (props) => {
                     className={styles.form__input}
                 /> 
                 <Input
-                    handler={handlerValue}
+                    dataHandler={handlerValue}
                     validation={emailValidation}
-                    error={getInputState(data, 'email')}
+                    errorState={getInputState(data, 'email')}
                     type='email'
                     placeholder='email'
                     maxLength={20}

@@ -1,3 +1,5 @@
-export const isAllInputValid = (values: any[]) => {
-    return values.every(value => value.alert === 'success');
+import { FormModel } from "../type/FormTypes";
+
+export const isAllInputValid = (values: FormModel[]) => {
+    return values.every(value => value.state === 'success');
 };

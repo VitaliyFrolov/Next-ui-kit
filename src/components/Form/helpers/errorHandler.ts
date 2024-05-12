@@ -1,7 +1,9 @@
-export const errorHandler = (data: any[]) => {
-    const values =  data.map((item: any) => {
-        if (item.alert !== 'success') {
-            return { ...item, alert: 'error' };
+import { FormModel } from "../type/FormTypes";
+
+export const errorHandler = (data: FormModel[]): FormModel[] => {
+    const values: FormModel[] = data.map((item: FormModel) => {
+        if (item.state !== 'success') {
+            return { ...item, state: 'error' };
         }
         return item;
     });

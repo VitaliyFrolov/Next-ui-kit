@@ -1,4 +1,6 @@
-export function phoneValidation(value: string) {
+import { ValidationResult } from "../../type/InputTypes"
+
+export function phoneValidation(value: string): ValidationResult {
     if (value.length <= 3) {
         return {
             value: value,

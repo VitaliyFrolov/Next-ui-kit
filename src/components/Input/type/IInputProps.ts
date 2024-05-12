@@ -1,19 +1,13 @@
-export type InputAlert = "empty" | "error" | "warning" | "success" | "none";
+import { RefObject } from "react";
+import { InputState, InputType, ValidationResult } from "./InputTypes";
 
 export interface InputProps {
-    handler: any;
-    validation?: any;
-    error?: boolean;
+    dataHandler: (value: string, inputState: InputState, type: InputType | undefined) => void;
+    validation?: (data: string) => ValidationResult;
+    errorState?: boolean;
     className?: string;
-    outline?: string;
     placeholder?: string;
-    type?: string;
-    maxLength?: number;
-    mask?: any;
-};
-
-export interface HandlerValueProps {
-    value: string;
-    alert: InputAlert;
-    type: string;
+    type?: InputType;
+    maxLength?: number | undefined;
+    mask?: (value: string, maxLength: number | undefined, ref: RefObject<HTMLInputElement>) => { value: string };
 };

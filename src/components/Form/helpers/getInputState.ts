@@ -1,7 +1,11 @@
-export function getInputState(values: any[] = [], type: string) {
-    const value = values.find((value: any) => value.type === type);
+import { FormModel } from "../type/FormTypes";
 
-    if (value.alert === 'error') {
-        return true
-    } else false
+export function getInputState(values: FormModel[] = [], type: string) {
+    const value = values.find((value: FormModel) => value.type === type);
+
+    if (value !== undefined) {
+        if (value.state === 'error') {
+            return true
+        } else false
+    }
 };
