@@ -4,17 +4,17 @@ export function phoneValidation(value: string): ValidationResult {
     if (value.length <= 3) {
         return {
             value: value,
-            alert: 'empty'
+            state: 'empty'
         }
     } else if (value.length < 18) {
         return {
             value: value,
-            alert: 'warning'
+            state: 'warning'
         }
     } else {
         return {
             value: value,
-            alert: 'success'
+            state: 'success'
         }
     }
 };

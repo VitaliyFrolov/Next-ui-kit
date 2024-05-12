@@ -37,7 +37,7 @@ export const Input: FC<InputProps> = ({
     const updateInputState = (value: string) => {  
         if (validation) {
             let validValue = validation(value);
-            setInputState(validValue.alert);
+            setInputState(validValue.state);
         } else {
            setInputState('none')
         };

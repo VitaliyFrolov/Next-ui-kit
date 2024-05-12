@@ -6,24 +6,24 @@ export function emailValidation(value: string): ValidationResult {
 
     const result: ValidationResult = {
         value: value,
-        alert: 'none'
+        state: 'none'
     };
 
 
     if (value.length === 0) {
         return {
             value: value,
-            alert: 'empty'
+            state: 'empty'
         }
     } else if (email === false) {
         return {
             value: value,
-            alert: 'warning'
+            state: 'warning'
         }
     } else if (email === true) {
         return {
             value: value,
-            alert: 'success'
+            state: 'success'
         }
     }
 

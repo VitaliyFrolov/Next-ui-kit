@@ -4,12 +4,12 @@ export function nameValidation(value: string): ValidationResult {
     if (value.length === 0) {
         return {
             value: value,
-            alert: 'empty'
+            state: 'empty'
         }
     } else {
         return {
             value: value,
-            alert: 'success'
+            state: 'success'
         }
     }
 };
