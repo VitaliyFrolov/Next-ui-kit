@@ -1,9 +1,9 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { InputProps } from '../type/IInputProps';
-import { cn } from '@/libs/classNames';
-import styles from './Input.module.scss';
+import { cn } from '../../../libs/classNames';
 import { InputState } from '../type/InputTypes';
-import { useKeyPress } from '@/hooks/useKeyPress';
+import { useKeyPress } from '../../../hooks/useKeyPress';
+import styles from './Input.module.scss';
 
 export const Input: FC<InputProps> = ({
     dataHandler,

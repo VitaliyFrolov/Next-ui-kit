@@ -11,7 +11,7 @@ export const getCursorPosition = (ref: React.RefObject<HTMLInputElement>): numbe
     const input = ref.current;
     if (input) {
         const cursorPosition = input.selectionStart;
-        return cursorPosition ? cursorPosition : 0;
+        return cursorPosition ? cursorPosition + 1 : 0;
     }
     return 0;
 };

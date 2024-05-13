@@ -6,6 +6,6 @@ export function getInputState(values: FormModel[] = [], type: string) {
     if (value !== undefined) {
         if (value.state === 'error') {
             return true
-        } else false
+        } else return false
     }
 };

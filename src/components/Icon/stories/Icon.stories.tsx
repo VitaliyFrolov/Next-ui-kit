@@ -37,4 +37,4 @@ export const Default: Story = {
     }
 }
 
-Default.storyName = "Modal"
+Default.storyName = "Icon"

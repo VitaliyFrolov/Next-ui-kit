@@ -29,7 +29,7 @@ export const Form: FC<FormProps> = (props) => {
         if (isAllInputValid(data)) {
             console.log(data);
         } else {
-            setData(errorHandler(data))
+            setData(errorHandler(data));
         }
     };
 
