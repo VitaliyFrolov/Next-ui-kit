@@ -1,18 +1,18 @@
 .outline {
     &_error {
-        outline: 1px solid red;
+        outline: 2px solid #FF3333;
     }
 
     &_success {
-        outline: 1px solid green;
+        outline: 2px solid #38C4A2;
     }
 
     &_empty {
-        outline: 1px solid red;
+        outline: 2px solid #FF3333;
     }
 
     &_warning {
-        outline: 1px solid red;
+        outline: 2px solid #FF3333;
     }
 
     &_none {
