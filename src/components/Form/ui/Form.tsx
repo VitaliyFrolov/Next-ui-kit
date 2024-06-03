@@ -14,7 +14,7 @@ import { FormModel } from '../type/FormTypes';
 import styles from './Form.module.scss';
 
 interface FormProps {
-    model?: FormModel[];
+    model: any[];
 };
 
 export const Form: FC<FormProps> = (props) => {
@@ -64,6 +64,7 @@ export const Form: FC<FormProps> = (props) => {
                     validation={nameValidation}
                     errorState={getInputState(data, 'text')}
                     type='text'
+                    name='text'
                     placeholder='text'
                     maxLength={20}
                     className={styles.form__input}
@@ -73,6 +74,7 @@ export const Form: FC<FormProps> = (props) => {
                     validation={phoneValidation}
                     errorState={getInputState(data, 'phone')}
                     type='phone'
+                    name='phone'
                     placeholder='phone'
                     mask={phoneMask}
                     maxLength={18}
@@ -83,6 +85,7 @@ export const Form: FC<FormProps> = (props) => {
                     validation={emailValidation}
                     errorState={getInputState(data, 'email')}
                     type='email'
+                    name='email'
                     placeholder='email'
                     maxLength={20}
                     className={styles.form__input}

@@ -12,6 +12,7 @@ export const Input: FC<InputProps> = ({
     className,
     placeholder,
     type,
+    name,
     maxLength,
     mask
 }) => {
@@ -43,7 +44,7 @@ export const Input: FC<InputProps> = ({
 
     const onBlurInput = (e: React.FocusEvent<HTMLInputElement>) => {
         e.stopPropagation();
-        dataHandler(e.target.value, inputState, type);
+        dataHandler(e.target.value, inputState, name);
         updateInputState(e.target.value);
         setOutline(inputState);
     };
@@ -52,12 +53,13 @@ export const Input: FC<InputProps> = ({
         setOutline(inputState);
     };
     
-    useKeyPress('Enter', onKeyDown)
+    useKeyPress('Enter', onKeyDown);
 
     useEffect(() => {
         const validValue: any = validation ? validation(value) : { state: 'none' };
         setInputState(validValue.state);
-        dataHandler(value, validValue.state, type);
+        dataHandler(value, validValue.state, name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
 
     useEffect(() => {
@@ -72,7 +74,7 @@ export const Input: FC<InputProps> = ({
             className={cn([className, styles[`outline_${outline}`]])}
             placeholder={placeholder}
             type={type}
-            name={type}
+            name={name}
             maxLength={maxLength}
             onChange={(e) => handleValue(e)}
             onBlur={(e) => onBlurInput(e)}

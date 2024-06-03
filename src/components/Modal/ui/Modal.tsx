@@ -8,7 +8,7 @@ export interface ModalProps {
     active: boolean;
     onClise?: () => void;
     backgroundColor?: string;
-}
+};
 
 export const Modal: FC<ModalProps> = (props) => {
     const {
