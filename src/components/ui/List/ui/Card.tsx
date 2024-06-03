@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './Card.module.scss';
 import { mokaDataProps } from '../type/data';
-import { Title } from '../../Title/ui/Title';
+import { Title } from '../../ui/Title/ui/Title';
 
 export const Card: FC<mokaDataProps> = (item) => {
     return (

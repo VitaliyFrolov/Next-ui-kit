@@ -3,7 +3,7 @@ import type { InputState, InputType } from '@/components/Input';
 import { FC, SyntheticEvent, useState } from 'react';
 import { Input } from '@/components/Input';
 import { phoneMask } from '@/components/Input/lib/phoneMask';
-import { Title } from '@/components/Title';
+import { Title } from '@/components/ui/Title';
 import { isAllInputValid } from '../helpers/isAllInputValid';
 import { phoneValidation } from '@/components/Input/helpers/validation/phoneValidation';
 import { emailValidation } from '@/components/Input/helpers/validation/emailValidation';
