@@ -1,0 +1,1 @@
+export { SlideTitle } from './ui/SlideTitle';

@@ -1,0 +1,23 @@
+.outline {
+    &_error {
+        outline: 2px solid #FF3333;
+    }
+
+    &_success {
+        outline: 2px solid #38C4A2;
+    }
+
+    &_empty {
+        outline: 2px solid #FF3333;
+    }
+
+    &_warning {
+        outline: 2px solid #FF3333;
+    }
+
+    &_none {
+        outline: none;
+    }
+
+   
+}

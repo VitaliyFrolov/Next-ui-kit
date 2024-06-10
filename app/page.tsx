@@ -1,3 +1,4 @@
+'use client'
 import MainPage from "@/pages/MainPage";
 
 export default function MainRoute() {
