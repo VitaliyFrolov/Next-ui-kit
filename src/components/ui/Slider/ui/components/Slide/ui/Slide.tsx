@@ -1,21 +1,26 @@
 import { FC } from 'react';
 import styles from './Slide.module.scss';
+import { SlideImage } from '../../SlideImage';
+import { SlideTitle } from '../../SlideTitle';
 
 interface SlideProps {
-    url: string;
-    title: string;
+   data: any
 };
 
 export const Slide: FC<SlideProps> = (props) => {
     const {
-        url,
-        title,
+      data
     } = props;
+
+    const {
+        url,
+        title
+    } = data;
 
     return (
         <div className={styles.slide}>
-            <>Image</>
-            <>Title</>
+            <SlideImage src={url} alt={title} />
+            <SlideTitle title={title} />
         </div>
     )
 };

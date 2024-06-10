@@ -1,0 +1,40 @@
+.arrows {
+    color: white;
+    display: flex;
+    font-size: 30px;
+    justify-content: space-between;
+    height: 100%;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    z-index: 1;
+}
+
+.arrow {
+    &_left {
+        height: 30px;
+        width: 30px;
+        background-image: url('../../../../../assets/icons/arrow.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-left: 5px;
+        transform: rotate(180deg);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &_right {
+        height: 30px;
+        width: 30px;
+        background-image: url('../../../../../assets/icons/arrow.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-right: 5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

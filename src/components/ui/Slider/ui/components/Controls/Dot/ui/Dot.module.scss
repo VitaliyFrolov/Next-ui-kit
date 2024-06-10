@@ -1,0 +1,14 @@
+.dot {
+    border-radius: 5px;
+    height: 10px;
+    margin: 5px;
+    width: 10px;
+    
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.selected {
+    background-color: green;
+}

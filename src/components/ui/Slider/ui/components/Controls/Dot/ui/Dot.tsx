@@ -11,11 +11,11 @@ export const Dot: FC<DotProps> = (props) => {
         number
     } = props;
 
-    const { goToSlide, slideNubmer } = useContext<any>(SliderContext);
+    const { goToSlide, slideNumber } = useContext<any>(SliderContext);
 
     return (
         <div
-            className={styles[`dot ${slideNubmer === number ? "selected" : ""}`]}
+            className={`${styles.dot} ${slideNumber === number ? styles.selected : ""}`}
             onClick={() => goToSlide(number)}
         />
     );

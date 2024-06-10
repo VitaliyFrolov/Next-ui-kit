@@ -1,11 +1,18 @@
 'use client'
 import { Form, formData } from '@/components/features/Form';
 import { Slider } from '@/components/ui/Slider';
+import { sliderItems } from '@/components/ui/Slider/data/sliderItems';
 
 export default function MainPage() {
     return (
         <div>
-            <Slider />
+            <Slider
+                data={sliderItems}
+                autoPlay={true}
+                autoPlayTime={3000}
+                width='100%'
+                height='400px'
+            />
         </div>
     )
 };

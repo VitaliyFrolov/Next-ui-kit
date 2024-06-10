@@ -1,11 +1,14 @@
 export const sliderItems = [
     {
-        "img": "images/2gis.png"
+        "url": "images/2gis.png",
+        "title": "title"
     },
     {
-        "img": "images/wb.png"
+        "url": "images/wb.png",
+        "title": "title"
     },
     {
-        "img": "images/2gis.png"
+        "url": "images/2gis.png",
+        "title": "title"
     }
 ];

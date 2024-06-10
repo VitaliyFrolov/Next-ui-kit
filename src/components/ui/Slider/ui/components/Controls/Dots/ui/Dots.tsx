@@ -3,12 +3,12 @@ import { SliderContext } from '../../../../Slider';
 import { Dot } from '../../Dot/ui/Dot';
 import styles from './Dots.module.scss';
 
-export const Dots: FC = (props) => {
-    const { slidersCoutn } = useContext<any>(SliderContext);
+export const Dots: FC = () => {
+    const {slideCount } = useContext<any>(SliderContext);
 
     const renderDots = () => {
         const dots = [];
-        for (let i = 0; i < slidersCoutn; i++) {
+        for (let i = 0; i < slideCount; i++) {
             dots.push(<Dot key={`dot-${i}`} number={i} />)
         }
 
@@ -16,4 +16,4 @@ export const Dots: FC = (props) => {
     };
 
     return <div className={styles.dots}>{renderDots()}</div>;
-};
+}; 

@@ -8,11 +8,11 @@ export const Arrows: FC = () => {
     return (
         <div className={styles.arrows}>
             <div
-                className={styles.arrows_left}
+                className={styles.arrow_left}
                 onClick={() => changeSlide(-1)}
             />
             <div
-                className={styles.arrows_right}
+                className={styles.arrow_right}
                 onClick={() => changeSlide(1)}
             />
         </div>

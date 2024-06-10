@@ -1,15 +1,18 @@
 import { FC, createContext, useEffect, useState } from 'react';
 import styles from './Slider.module.scss';
+import { Arrows } from './components/Controls/Arrows/ui/Arrows';
+import { SliderList } from './components/SliderList';
+import { Dots } from './components/Controls/Dots';
 
 interface SliderProps {
     autoPlay?: boolean;
     autoPlayTime?: number;
-    width?: '%' | 'px';
-    height?: '%' | 'px';
+    width?: string;
+    height?: string;
     data: any;
 };
 
-export const SliderContext = createContext(null);
+export const SliderContext = createContext({});
 
 export const Slider: FC<SliderProps> = (props) => {
     const {
@@ -37,15 +40,15 @@ export const Slider: FC<SliderProps> = (props) => {
     };
 
     useEffect(() => {
-        setItems(data)
+        setItems(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [data]);
 
     const goToSlide = (number: number) => {
         setSlide(number % items.length);
     };
 
-    const hendleTouchStart = (e: any) => {
+    const handleTouchStart = (e: any) => {
         const touchDown = e.touches[0].clientX;
 
         setTouchPosition(touchDown);
@@ -84,8 +87,25 @@ export const Slider: FC<SliderProps> = (props) => {
     }, [items, slide]);
 
     return (
-        <div>
-            slider
+        <div
+            style={{width, height}}
+            className={styles.slider}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleToutchMove}
+        >
+            <SliderContext.Provider
+                value={{
+                    goToSlide,
+                    changeSlide,
+                    slideCount: items.length,
+                    slideNumber: slide,
+                    items
+                }}
+            >
+                <Arrows />
+                <SliderList />
+                <Dots />
+            </SliderContext.Provider>
         </div>
     );
 };
