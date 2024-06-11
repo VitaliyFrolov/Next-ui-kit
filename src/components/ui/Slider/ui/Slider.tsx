@@ -1,18 +1,26 @@
-import { FC, createContext, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, createContext, useEffect, useState } from 'react';
 import styles from './Slider.module.scss';
 import { Arrows } from './components/Controls/Arrows/ui/Arrows';
 import { SliderList } from './components/SliderList';
 import { Dots } from './components/Controls/Dots';
+import { sliderItem } from '../types/sliderTypes';
+import { SliderContextValue } from '../types/sliderTypes';
 
 interface SliderProps {
     autoPlay?: boolean;
     autoPlayTime?: number;
     width?: string;
     height?: string;
-    data: any;
+    data: sliderItem[];
 };
 
-export const SliderContext = createContext({});
+export const SliderContext = createContext<SliderContextValue>({
+    goToSlide: () => {},
+    changeSlide: () => {},
+    slideCount: 0,
+    slideNumber: 0,
+    items: []
+});
 
 export const Slider: FC<SliderProps> = (props) => {
     const {
@@ -23,9 +31,9 @@ export const Slider: FC<SliderProps> = (props) => {
         data
     } = props;
 
-    const [ items, setItems ] = useState([]);
+    const [ items, setItems ] = useState<sliderItem[]>([]);
     const [ slide, setSlide ] = useState(0);
-    const [ touchPosition, setTouchPosition ] = useState(null);
+    const [ touchPosition, setTouchPosition ] = useState<number | null>(null);
 
     const changeSlide = (direction: number = 1) => {
         let slideNubmer = 0;
@@ -48,13 +56,13 @@ export const Slider: FC<SliderProps> = (props) => {
         setSlide(number % items.length);
     };
 
-    const handleTouchStart = (e: any) => {
+    const handleTouchStart = (e: TouchEvent) => {
         const touchDown = e.touches[0].clientX;
 
         setTouchPosition(touchDown);
     };
 
-    const handleToutchMove = (e: any) => {
+    const handleToutchMove = (e: TouchEvent) => {
         if (touchPosition === null) {
             return;
         }

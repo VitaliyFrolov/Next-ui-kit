@@ -8,8 +8,6 @@ export default function MainPage() {
         <div>
             <Slider
                 data={sliderItems}
-                autoPlay={true}
-                autoPlayTime={3000}
                 width='100%'
                 height='400px'
             />

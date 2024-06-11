@@ -1,9 +1,10 @@
 import { FC, useContext } from 'react';
 import styles from './Arrows.module.scss';
 import { SliderContext } from '../../../../Slider';
+import { SliderContextValue } from '@/components/ui/Slider/types/sliderTypes';
 
 export const Arrows: FC = () => {
-    const { changeSlide } = useContext<any>(SliderContext);
+    const { changeSlide } = useContext<SliderContextValue>(SliderContext);
 
     return (
         <div className={styles.arrows}>
