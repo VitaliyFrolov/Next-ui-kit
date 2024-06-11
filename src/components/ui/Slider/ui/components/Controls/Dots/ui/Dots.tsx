@@ -2,9 +2,10 @@ import { FC, useContext } from 'react';
 import { SliderContext } from '../../../../Slider';
 import { Dot } from '../../Dot/ui/Dot';
 import styles from './Dots.module.scss';
+import { SliderContextValue } from '@/components/ui/Slider/types/sliderTypes';
 
 export const Dots: FC = () => {
-    const {slideCount } = useContext<any>(SliderContext);
+    const {slideCount } = useContext<SliderContextValue>(SliderContext);
 
     const renderDots = () => {
         const dots = [];
