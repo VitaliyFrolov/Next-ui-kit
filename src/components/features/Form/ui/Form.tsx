@@ -1,13 +1,13 @@
 'use client'
-import type { InputState, InputType } from '@/components/ui/Input';
+import type { InputState, InputType } from '@/components/shared/Input';
 import { FC, SyntheticEvent, useState } from 'react';
-import { Input } from '@/components/ui/Input';
-import { phoneMask } from '@/components/ui/Input/lib/phoneMask';
-import { Title } from '@/components/ui/Title';
+import { Input } from '@/components/shared/Input';
+import { phoneMask } from '@/components/shared/Input/lib/phoneMask';
+import { Title } from '@/components/shared/Title';
 import { isAllInputValid } from '../helpers/isAllInputValid';
-import { phoneValidation } from '@/components/ui/Input/helpers/validation/phoneValidation';
-import { emailValidation } from '@/components/ui/Input/helpers/validation/emailValidation';
-import { nameValidation } from '@/components/ui/Input/helpers/validation/nameValidation';
+import { phoneValidation } from '@/components/shared/Input/helpers/validation/phoneValidation';
+import { emailValidation } from '@/components/shared/Input/helpers/validation/emailValidation';
+import { nameValidation } from '@/components/shared/Input/helpers/validation/nameValidation';
 import { errorHandler } from '../helpers/errorHandler';
 import { getInputState } from '../helpers/getInputState';
 import { FormModel } from '../type/FormTypes';

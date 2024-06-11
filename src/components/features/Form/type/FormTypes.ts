@@ -1,4 +1,4 @@
-import { InputState } from "@/components/Input";
+import { InputState } from "@/components/shared/Input";
 
 export type FormModel = {
     value: string;

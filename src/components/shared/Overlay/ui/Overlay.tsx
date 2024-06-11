@@ -1,6 +1,6 @@
 import { FC, useRef, ReactElement, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useKeyPress } from '../../../hooks/useKeyPress';
+import { useKeyPress } from '@/hooks/useKeyPress';
 import { scrollBlocker } from '../helpers/scrollBlocker';
 import styles from './Overlay.module.scss';
 
@@ -22,6 +22,7 @@ export const Overlay: FC<OverlayProps> = ({
 
     useEffect(() => {
         ref.current = document.querySelector<HTMLElement>(root)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const overlay: ReactElement | null = <div ref={background} style={{backgroundColor: `rgba(0, 0, 0, ${shading}%`}} className={styles.overlay} onClick={() => close()}> </div>;
